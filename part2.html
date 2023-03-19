@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    #items-cook{
+        z-index: 2;
+        right: 120px;
+        bottom: 210px;
+        display: flex;
+    }
+    .items{
+        width: 100px;
+        transition: 0.5s;
+    }
+    #items-cook-botMi:hover{
+        transform: translateY(-10px);
+    }
+    #items-cook-bo:hover{
+        transform: translateY(-10px);
+    }
+    #items-cook-trung:hover{
+        transform: translateY(-10px);
+    }
+    #items-cook-duong:hover{
+        transform: translateY(-10px);
+    }
+    #nenDanTruyen{
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        background-color: rgba(0, 0, 0, 0.9);
+        align-items: end;
+        z-index: 10;
+    }
+    #bong{
+        transform: rotateY(180deg);
+        position: absolute;
+        top: 30px;
+        right: 100px;
+        background-image:url("bongChat.png") ;
+        background-size: cover;
+        padding: 100px;
+        background-position: center;
+    }
+    #bong div{
+        transform: rotateY(180deg);
+        width: 200px;
+        word-wrap: break-word;
+    }
+    #danTruyen{
+        height: 50%;
+        transform: rotateY(180deg);
+    }
+</style>
+<body>
+    <div style="background-repeat: no-repeat;background-size: cover ;background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190223/ourmid/pngtree-ancient-market-street-background-design-paintedancientmarket-backgroundillustration-backgroundadvertising-image_66839.jpg');" class="w-full h-screen flex justify-center items-center">
+        <div class="flex items-end relative w-full h-screen">
+            <img class="left-80 absolute bottom-20" style="width: 250px ;" src="https://static.wikia.nocookie.net/kimetsu-no-yaiba-vietnam/images/2/2f/Nezuko_anime_design.png/revision/latest?cb=20200626040659&path-prefix=vi" alt="">
+            <div class="left-20 bottom-0 absolute z-10">
+                <img class="w-[700px]  " src="png-transparent-street-food-computer-icons-hot-dog-food-accountant-table-transformed.png" alt="">
+            </div>
+            <div id="items-cook" class="absolute">
+                <img onclick="clickBotMi()" class="items" id="items-cook-botMi" src="https://is.vnecdn.net/v837/45/14/02/4021445/assets/images/graphics/bot-mi.png" alt="">
+                <img onclick="clickTrung()" class="items" id="items-cook-trung" src="https://salt.tikicdn.com/cache/280x280/ts/product/3d/cb/bc/40374b805f8ff7eed59dcfc70d276369.png" alt="">
+                <img onclick="clickBo()" class="items" id="items-cook-bo" src="https://cdn.shopify.com/s/files/1/0279/0968/5345/products/image_76446ba8-fe96-486a-be02-3ba64b9e7400_800x.png?v=1620064926" alt="">
+                <img onclick="clickDuong()" class="items" id="items-cook-duong" src="https://www.pngkit.com/png/full/81-817720_bowl-of-sugar-png.png" alt="">
+            </div>
+            <div class="right-20 bottom-0 absolute z-0">
+                <img class="w-[500px]" src="pngtree-a-wooden-table-image_1444550-removebg-preview.png" alt="">
+            </div>
+        </div>
+    </div>
+    
+    <span id="nenDanTruyen">
+        <div id="bong">
+            <div id="textjs"></div>
+        </div>
+        <img id="danTruyen" src="https://preview.redd.it/526t4xsfr6n51.png?auto=webp&s=ab5528a5d12f6c53b3b86a81173ffa2339f4ef96" alt="">
+    </span>
+    <script>
+        var botMi = document.querySelector("#items-cook-botMi")
+        var trung = document.querySelector("#items-cook-trung")
+        var bo = document.querySelector("#items-cook-bo")
+        var duong = document.querySelector("#items-cook-duong")
+        function clickBotMi(){
+            botMi.style.display="none"
+        }
+        function clickTrung(){
+            trung.style.display="none"
+        }
+        function clickBo(){
+            bo.style.display="none"
+        }
+        function clickDuong(){
+            duong.style.display="none"
+        }
+        let letter = 0;
+const text = "hãy nhấn vào các vật phẩm trên bàn để mình có thể tạo ra 1 món quà thật tuyệt";
+
+function textAnimate() {
+  const textjs = document.querySelector("#textjs");
+  
+  function typeText() {
+    if (letter < text.length) {
+      textjs.innerHTML += text.charAt(letter);
+      letter++;
+      let speed = Math.floor(Math.random() * 150) + 50;
+      setTimeout(typeText, speed);
+    }
+  }
+  
+  typeText();
+}
+
+textAnimate();
+
+    </script>
+</body>
+</html>

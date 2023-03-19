@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="wistart=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Document</title>
+    <style>
+        #wrapper {
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .my-super-cool-btn {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: 1px;
+            font-size: 2rem;
+            box-sizing: border-box;
+            display: none;
+        }
+        
+        .my-super-cool-btn span {
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .my-super-cool-btn span:before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            border: 7px solid #F3CF14;
+            box-sizing: border-box;
+            transition: all .85s cubic-bezier(0.25, 1, 0.33, 1);
+            box-shadow: 0 30px 85px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
+        }
+        
+        .my-super-cool-btn:hover span:before {
+            transform: scale(0.8);
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
+        }
+        
+        .my-super-cool-btn .dots-container {
+            opacity: 0;
+            animation: intro 1.6s;
+            animation-fill-mode: forwards;
+        }
+        
+        .my-super-cool-btn .dot {
+            width: 8px;
+            height: 8px;
+            display: block;
+            background-color: #F3CF14;
+            border-radius: 100%;
+            position: absolute;
+            transition: all .85s cubic-bezier(0.25, 1, 0.33, 1);
+        }
+        
+        .my-super-cool-btn .dot:nth-child(1) {
+            top: 50px;
+            left: 50px;
+            transform: rotate(-140deg);
+            animation: swag1-out 0.3s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        
+        .my-super-cool-btn .dot:nth-child(2) {
+            top: 50px;
+            right: 50px;
+            transform: rotate(140deg);
+            animation: swag2-out 0.3s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        
+        .my-super-cool-btn .dot:nth-child(3) {
+            bottom: 50px;
+            left: 50px;
+            transform: rotate(140deg);
+            animation: swag3-out 0.3s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        
+        .my-super-cool-btn .dot:nth-child(4) {
+            bottom: 50px;
+            right: 50px;
+            transform: rotate(-140deg);
+            animation: swag4-out 0.3s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        
+        .my-super-cool-btn:hover .dot:nth-child(1) {
+            animation: swag1 0.3s;
+            animation-fill-mode: forwards;
+        }
+        
+        .my-super-cool-btn:hover .dot:nth-child(2) {
+            animation: swag2 0.3s;
+            animation-fill-mode: forwards;
+        }
+        
+        .my-super-cool-btn:hover .dot:nth-child(3) {
+            animation: swag3 0.3s;
+            animation-fill-mode: forwards;
+        }
+        
+        .my-super-cool-btn:hover .dot:nth-child(4) {
+            animation: swag4 0.3s;
+            animation-fill-mode: forwards;
+        }
+        
+        
+        
+        #bg {
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            display: none;
+        }
+        
+        .video {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+        
+        #load {
+            animation: load 0.5s infinite alternate;
+        }
+        
+        #load-bg {
+            display: flex;
+        }
+        
+        #fiter1 {
+            transition: 0.5s;
+            opacity: 0;
+        }
+        
+        #fiter2 {
+            opacity: 0;
+            transition: 0.5s;
+        }
+        
+        .my-super-cool-btn:hover #fiter1 {
+            width: 100%;
+            top: -50px;
+            right: -30px;
+            opacity: 1;
+        }
+        
+        .my-super-cool-btn:hover #fiter2 {
+            width: 100%;
+            opacity: 1;
+        }
+        
+        .my-super-cool-btn {
+            animation: startBG 0.8s linear;
+        }
+        
+        
+        
+        .my-super-cool-btn:focus {
+            animation: next 1s;
+        }
+        
+        
+        
+        #nhanVat {
+            display: flex;
+            opacity: 0;
+            position: absolute;
+            bottom: 0;
+            transform: rotateY(180deg);
+            animation: run 4s linear;
+            left: 0;
+        }
+        
+        #nhanVatTinh {
+            position: absolute;
+            right: 0;
+            bottom: 20px;
+            display: flex;
+            justify-content: end;
+            flex-direction: column;
+            align-items: end;
+            animation: hien 4s linear;
+        }
+        
+        
+        #nhanVatTinh span {
+            background-image: url('bongChat.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 70px;
+            transform: rotateY(180deg);
+        }
+        
+        #nhanVatTinh span nav {
+            transform: rotateY(180deg);
+        }
+        
+        
+        #next-1 {
+            display: none;
+        }
+        
+        #btn-next1 {
+            display: none;
+        }
+        
+        #part2 {
+            display: none;
+        }
+        
+        #items-cook {
+            z-index: 2;
+            bottom: 34%;
+            display: flex;
+        }
+        
+        .items {
+            width: 25%;
+            transition: 1s;
+        }
+        
+        #items-cook-botMi:hover {
+            transform: translateY(-10px);
+        }
+        
+
+        
+        #items-cook-bo:hover {
+            transform: translateY(-10px);
+        }
+        
+        #items-cook-trung:hover {
+            transform: translateY(-10px);
+        }
+        
+        #items-cook-duong:hover {
+            transform: translateY(-10px);
+        }
+        #items-cook-bo:focus{
+            animation: next 0.5s;
+
+        }
+        #items-cook-trung:focus{
+            animation: next 1s;
+
+        }
+        #items-cook-duong:focus{
+            animation: next 1s;
+
+        }
+        #items-cook-botMi:focus{
+            animation: next 1s;
+
+        }
+        
+        #nenDanTruyen {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: end;
+            z-index: 10;
+        }
+        
+        #bong {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 30px;
+            right: 100px;
+            background-image: url("bongChat.png");
+            background-size: cover;
+            padding: 100px;
+            background-position: center;
+        }
+        
+        #bong div {
+            transform: rotateY(180deg);
+            width: 200px;
+            word-wrap: break-word;
+        }
+        
+        #danTruyen {
+            height: 50%;
+            transform: rotateY(180deg);
+        }
+        #th{
+          transition: 2s;
+        }
+        #part3{
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+        
+        #ino{
+            animation: runZenIno 4s linear;
+            right: -500px;
+            
+        }
+        #zen{
+            animation: runZenIno 4s linear;
+            right: -300px;
+            
+        }
+        #bgbongtoi {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+
+        }
+        .videobongtoi {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+        .part3{
+            display: none;
+        }
+        #bgbongtoi {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+
+        }
+        .videobongtoi {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+        #nen{
+          width: 0;
+          height: 0;
+          box-shadow: 0 0 200px 100px rgb(254 243 199);
+        }
+
+        #thu{
+          animation: thu 1.5s ease;
+        }
+        /* #part3:hover > #ino{
+            transform: translateX(-1000px);
+        }
+        #part3:hover > #zen{
+            transform: translateX(-1000px);
+        } */
+        @keyframes thu {
+          0%{
+            transform: translateY(-500px);
+          }
+          50%{
+            transform: translateY(500px);
+          }
+          100%{
+            transform: translateY(0);
+          }
+        }
+        @keyframes runZenIno{
+            0%{
+                
+            }
+            5%{
+                
+                display: flex;
+            }
+            100%{
+                transform: translateX(-2000px);
+                display: flex;
+            }
+        }
+        @keyframes run {
+            0% {
+                left: 0;
+                display: flex;
+                opacity: 1;
+            }
+            99% {
+                display: flex;
+                opacity: 1;
+            }
+            100% {
+                left: 90%;
+                display: none;
+            }
+        }
+        @keyframes next {
+            0% {
+                transform: translateY(50px);
+            }
+            25% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(500px);
+                opacity: 0;
+            }
+        }
+        @keyframes intro {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes swag1 {
+            0% {
+                top: 50px;
+                left: 50px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                top: 20px;
+                left: 20px;
+                width: 8px;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes swag1-out {
+            0% {
+                top: 20px;
+                left: 20px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                top: 50px;
+                left: 50px;
+                width: 8px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes swag2 {
+            0% {
+                top: 50px;
+                right: 50px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                top: 20px;
+                right: 20px;
+                width: 8px;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes swag2-out {
+            0% {
+                top: 20px;
+                right: 20px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                top: 50px;
+                right: 50px;
+                width: 8px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes swag3 {
+            0% {
+                bottom: 50px;
+                left: 50px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 20px;
+                left: 20px;
+                width: 8px;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes swag3-out {
+            0% {
+                bottom: 20px;
+                left: 20px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 50px;
+                left: 50px;
+                width: 8px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes swag4 {
+            0% {
+                bottom: 50px;
+                right: 50px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 20px;
+                right: 20px;
+                width: 8px;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes swag4-out {
+            0% {
+                bottom: 20px;
+                right: 20px;
+                width: 8px;
+            }
+            50% {
+                width: 30px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 50px;
+                right: 50px;
+                width: 8px;
+                opacity: 0;
+            }
+        }
+        @keyframes startBG {
+            0% {
+                transform: scale(0.5);
+                background-color: #F3CF14;
+                border-radius: 100px;
+                overflow: hidden;
+            }
+            25% {
+                transform: scale(2);
+                background-color: transparent;
+                border-radius: 100px;
+                overflow: hidden;
+            }
+            50% {
+                transform: scale(0.5);
+                background-color: transparent;
+                border-radius: 100px;
+                overflow: hidden;
+            }
+            75% {
+                transform: scale(1.5);
+                background-color: transparent;
+                border-radius: 100px;
+                overflow: hidden;
+            }
+            100% {
+                transform: scale(1);
+                background-color: transparent;
+                border-radius: 100px;
+                overflow: hidden;
+            }
+        }
+        @keyframes hien {
+            0% {
+                opacity: 0;
+            }
+            99% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="load-bg" class="w-full h-screen flex flex-col justify-center items-center" style="background: radial-gradient(879px at 10.4% 22.3%, rgb(255, 235, 238) 0%, rgb(186, 190, 245) 93.6%);">
+        <img id="load" class="w-24" src="./../cogui/css/nezucoRunnig.gif" alt="">
+        <button onclick="start()" href="#" class="my-super-cool-btn relative">
+            <div class="dots-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <span>Go!</span>
+            <nav id="fiter1" class="absolute">
+                <img src="header (1).png" alt="">
+            </nav>
+            <nav id="fiter2" class="absolute bottom-0">
+                <img src="header (2).png" alt="">
+            </nav>
+        </button>
+    </div>
+    <audio id="music-bg">
+        <source src="./y2mate.com - Thích Anh Rồi Đấy Remix  HANNIE x Đại Mèo Remix HOT TIK TOK  vì em thích anh rồi đấy này anh ơi.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+    </audio>
+    <div id="bg">
+        <video loop class="video" id="myVideo">
+            <source src="./bgx2.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div id="next-1" class="w-full h-screen relative">
+        <div class="absolute w-full h-[20%] items-center flex justify-center bottom-0 left-0 ">
+            <button onclick="nextPart1()" id="btn-next1"  type="button" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-40 py-4 text-center mr-2 mb-2">NEXT</button>
+                
+        </div>
+
+        <span id="nhanVat"><img class="w-60" src="nezucoRunnig.gif" alt=""></span>
+        <span id="nhanVatTinh">
+        <span>
+          <nav>ấn cái nút đê</nav>
+        </span>
+        <img src="nezuco.gif" class="w-40" alt="">
+        </span>
+    </div>
+
+    <div id="part2" class="w-full h-screen flex-col">
+        <div style="background-repeat: no-repeat;background-size: cover ;background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190223/ourmid/pngtree-ancient-market-street-background-design-paintedancientmarket-backgroundillustration-backgroundadvertising-image_66839.jpg');" class="w-full h-screen flex justify-center items-center">
+            <div class="flex justify-between w-full h-screen">
+                <div class="w-1/2 relative flex justify-center">
+                    <img class="w-[40%] absolute bottom-[5%]" src="https://static.wikia.nocookie.net/kimetsu-no-yaiba-vietnam/images/2/2f/Nezuko_anime_design.png/revision/latest?cb=20200626040659&path-prefix=vi" alt="">
+                    <img class="w-full bottom-0 absolute z-10  " src="png-transparent-street-food-computer-icons-hot-dog-food-accountant-table-transformed.png" alt="">
+                </div>
+                <div class="w-1/2 items-end relative flex justify-center">
+                    <img class="w-[80%]" src="pngtree-a-wooden-table-image_1444550-removebg-preview.png" alt="">
+                    <div id="items-cook" class="absolute w-[70%]">
+                        <img onclick="clickBotMi()" class="items" id="items-cook-botMi" src="https://is.vnecdn.net/v837/45/14/02/4021445/assets/images/graphics/bot-mi.png" alt="">
+                        <img onclick="clickTrung()" class="items" id="items-cook-trung" src="https://salt.tikicdn.com/cache/280x280/ts/product/3d/cb/bc/40374b805f8ff7eed59dcfc70d276369.png" alt="">
+                        <img onclick="clickBo()" class="items" id="items-cook-bo" src="https://cdn.shopify.com/s/files/1/0279/0968/5345/products/image_76446ba8-fe96-486a-be02-3ba64b9e7400_800x.png?v=1620064926" alt="">
+                        <img onclick="clickDuong()" class="items" id="items-cook-duong" src="https://www.pngkit.com/png/full/81-817720_bowl-of-sugar-png.png" alt="">
+                    </div>
+                </div>
+
+                <!-- <img class="left-80 absolute bottom-20" style="width: 250px ;" src="https://static.wikia.nocookie.net/kimetsu-no-yaiba-vietnam/images/2/2f/Nezuko_anime_design.png/revision/latest?cb=20200626040659&path-prefix=vi" alt="">
+                <div class="left-20 bottom-0 absolute z-10">
+                    <img class="w-[700px]  " src="png-transparent-street-food-computer-icons-hot-dog-food-accountant-table-transformed.png" alt="">
+                </div>
+                <div id="items-cook" class="absolute">
+                    <img onclick="clickBotMi()" class="items" id="items-cook-botMi" src="https://is.vnecdn.net/v837/45/14/02/4021445/assets/images/graphics/bot-mi.png" alt="">
+                    <img onclick="clickTrung()" class="items" id="items-cook-trung" src="https://salt.tikicdn.com/cache/280x280/ts/product/3d/cb/bc/40374b805f8ff7eed59dcfc70d276369.png" alt="">
+                    <img onclick="clickBo()" class="items" id="items-cook-bo" src="https://cdn.shopify.com/s/files/1/0279/0968/5345/products/image_76446ba8-fe96-486a-be02-3ba64b9e7400_800x.png?v=1620064926" alt="">
+                    <img onclick="clickDuong()" class="items" id="items-cook-duong" src="https://www.pngkit.com/png/full/81-817720_bowl-of-sugar-png.png" alt="">
+                </div>
+                <div class="right-20 bottom-0 absolute z-0">
+                    <img class="w-[500px]" src="pngtree-a-wooden-table-image_1444550-removebg-preview.png" alt="">
+                </div> -->
+            </div>
+        </div>
+
+        <span id="nenDanTruyen">
+            <div id="bong">
+                <div id="textjs"></div>
+            </div>
+            <img id="danTruyen" src="https://preview.redd.it/526t4xsfr6n51.png?auto=webp&s=ab5528a5d12f6c53b3b86a81173ffa2339f4ef96" alt="">
+        </span>
+        <div id="part3" class="w-full h-screen absolute top-0 left-0">
+            <img id="zen" class="h-[30%] absolute bottom-0" src="https://static.wikia.nocookie.net/5170d8fd-8747-4977-bb36-67a92563cc82/scale-to-width/755" alt="">
+            <img id="ino" class="h-[30%] absolute bottom-0" src="https://static.wikia.nocookie.net/53813257-70b8-4003-864f-64b31b3f2576/scale-to-width/755" alt="">
+        </div>
+    </div>
+    <div id="tran" class="w-full h-screen hidden flex-col justify-center items-center absolute " style="z-index: -1;background: radial-gradient(879px at 10.4% 22.3%, rgb(255, 235, 238) 0%, rgb(186, 190, 245) 93.6%);">
+        <img id="load" class="w-24" src="./../cogui/css/nezucoRunnig.gif" alt="">
+
+    </div>
+    <div class="part3">
+        <div id="bgbongtoi">
+            <video class="videobongtoi" id="myVideobongtoi">
+                <source src="./videotoi.mp4" type="video/mp4">
+            </video>
+            <audio id="hapy">
+              <source src="./hapy.mp3" type="audio/mp3">
+            </audio>
+            <audio id="hapy2">
+              <source src="./Tieng-nhieu-nguoi-noi-happy-birthday-www_tiengdong_com.mp3" type="audio/mp3">
+            </audio>
+          </div>
+          <div class="absolute bottom-0 z-20 w-full flex justify-center mb-5">
+            <button onclick="playgoin()" id="buton" type="button" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">vào</button>
+          </div>
+          <div id="thuTinh" class="h-screen hidden w-full absolute z-10 flex flex-col top-0">
+            <div class="h-[50%] w-full flex justify-center">
+              <div class="w-[60%] flex items-start justify-center" style="margin:5%">
+                <img onclick="openThu(1)" id="gojo" class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img onclick="openThu(2)" class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+              </div>
+            </div>
+            <div class="h-[50%] w-full flex justify-center">
+              <div class="w-[60%] flex items-end justify-between" style="margin:0%">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+                <img class="w-[14%]" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="absolute bottom-0 z-10 w-full flex justify-center items-center top-0">
+            <button id="nen"></button>
+          </div> -->
+           <div id="docThu" class="absolute hidden bottom-0 z-10 w-full flex justify-center items-center top-0 " style="overflow: hidden; background-color: rgba(0, 0, 0, 0.8);">
+             <img id="thu" onclick="reading(1)" class="w-[44%] flex" src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-love-letter-ilustration-png-image_8089930.png" alt="">
+            <img id="NHANVAT" class="w-[25%] absolute left-0" src="" alt="">
+            <div id="contten" class="w-1/2 hidden ml-20 w-auto text-sm flex-col font-bold h-[80%] p-10 rounded-2xl" style="width: 70%;;background-image: url('./—Pngtree—jasmine\ simple\ letter\ paper\ background_1434569.png');background-size: cover; "  >
+              <p>
+        
+              </p>
+              <button onclick="openThu(0)" type="button" class=" text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">thoát</button>
+        
+            </div>
+            
+          </div>
+    </div>
+
+
+    <script>
+        var dkMusic = true
+        var loadBg = document.querySelector("#load-bg")
+        var load = document.querySelector("#load")
+        var musicBg = document.querySelector("#music-bg")
+        var bg = document.querySelector("#bg")
+        var btnGo = document.querySelector(".my-super-cool-btn")
+        var next1 = document.querySelector("#next-1")
+        var btnnext1 = document.querySelector("#btn-next1 ")
+        var myVideo = document.getElementById("myVideo");
+        var part2 = document.querySelector("#part2")
+        var part3 = document.querySelector("#part3")
+        var intro = document.querySelector("#nenDanTruyen")
+        var botMi = document.querySelector("#items-cook-botMi")
+        var trung = document.querySelector("#items-cook-trung")
+        var bo = document.querySelector("#items-cook-bo")
+        var duong = document.querySelector("#items-cook-duong")
+        var tran = document.querySelector("#tran")
+        var dk = false;
+        var dem = 0;
+        var videobongtoi = document.querySelector(".videobongtoi")
+        var checkvideo = true
+        var part3r = document.querySelector(".part3")
+        var videobongtoi = document.querySelector(".videobongtoi")
+        var checkvideo = true
+        var thuTinh = document.querySelector("#thuTinh")
+        var hapy = document.querySelector('#hapy')
+        var hapy2 = document.querySelector('#hapy2')
+
+   
+    
+
+        function start() {
+            setTimeout(() => {
+                loadBg.style.display = "none";
+                bg.style.display = "flex"
+                setTimeout(() => {
+                    next1.style.display = "flex"
+
+                }, 6000)
+                setTimeout(() => {
+                    btnnext1.style.display = "flex"
+                }, 8000)
+                if (dkMusic) {
+                    musicBg.play()
+                    myVideo.muted = false; // bật âm thanh
+                    myVideo.play(); // bắt đầu phát video
+                    dkMusic = false
+
+                } else {
+                    musicBg.pause()
+                    dkMusic = true
+                }
+            }, 500)
+        }
+
+        function nextPart1() {
+            
+            myVideo.pause()
+            next1.style.display = "none"
+            bg.style.display = "none"
+            part2.style.display = "flex"
+            dk = true
+            console.log(dk)
+            console.log('dj')
+            let letter = 0;
+            const text = "hãy nhấn vào các vật phẩm trên bàn để mình có thể tạo ra 1 món quà thật tuyệt";
+
+            function textAnimate() {
+                const textjs = document.querySelector("#textjs");
+
+                function typeText() {
+                    if (letter < text.length) {
+                        textjs.innerHTML += text.charAt(letter);
+                        letter++;
+                        let speed = Math.floor(Math.random() * 150) + 50;
+                        setTimeout(typeText, speed);
+                    }
+                }
+
+                typeText();
+            }
+
+            textAnimate();
+            setTimeout(() => {
+                intro.style.display = "none"
+                musicBg.pause()
+            }, 12000)
+        }
+        setTimeout(() => {
+            load.style.display = "none"
+            btnGo.style.display = "flex"
+        }, 1000)
+
+
+        function clickBotMi() {
+            setTimeout(()=>{
+                botMi.style.display = "none"
+            dem++;
+            checkDem()
+            },10)
+        }
+
+        function clickTrung() {
+            setTimeout(()=>{
+                trung.style.display = "none"
+            dem++;
+            checkDem()
+            },10)
+        }
+
+        function clickBo() {
+            setTimeout(()=>{
+                bo.style.display = "none"
+            dem++;
+            checkDem()
+            },10)
+        }
+
+        function clickDuong() {
+            setTimeout(()=>{
+                duong.style.display = "none"
+            dem++;
+            checkDem()
+            },10)
+        }
+        function checkDem(){
+            if(dem==4){
+                console.log(dem)
+                part3.style.display="flex"
+                setTimeout(()=>{
+                part2.style.display="none"
+                tran.style.display="flex"
+                setTimeout(()=>{
+                    part3r.style.display='flex'
+                },1200)
+            },4000)
+            }
+            
+        }
+        function playgoin(){
+      checkvideo = checkvideo == true ? false : true
+      document.querySelector("#buton").style.display='none'
+      if(checkvideo==false){
+        videobongtoi.play()
+        hapy.play()
+        setTimeout(()=>{
+          videobongtoi.pause()
+          setTimeout(()=>{
+          
+          document.querySelector("#buton").style.display='flex'
+          document.querySelector("#buton").innerHTML = 'thôi nến'
+        },10000)
+        },8200)
+        
+      }
+      if(checkvideo){
+        videobongtoi.play()
+        hapy.pause()
+        hapy2.play()
+        hapy2.volume = 0.5;
+
+
+        setTimeout(()=>{
+          thuTinh.style.display="flex"
+        },1000)
+      }
+    }
+    function openThu(x){
+      if(x==1){
+        document.querySelector('#NHANVAT').src='./a5c7b57fce10350f792056e8ad1ac84a-removebg-preview.png'
+        document.querySelector('#contten p').innerHTML='Chào nhóc </br>Hành tinh nào đã cho cháu mượn đĩa bay để xuống trái đất để thấy tôi vậy ? Nhanh nhanh cất đĩa bay và ở lại đây và đấm chìm trong cái món quà này nhóa! </br></br> Chúc mừng sinh nhật nhóc'
+        document.querySelector('#docThu').style.display='flex'
+        
+      }
+      if(x==2){
+        document.querySelector('#NHANVAT').src='https://mystickermania.com/cdn/stickers/anime/demon-slayer-zenitsu-girl-512x512.png'
+        document.querySelector('#contten p').innerHTML='Chào nhóc </br>Hành tinh nào đã cho cháu mượn đĩa bay để xuống trái đất để thấy tôi vậy ? Nhanh nhanh cất đĩa bay và ở lại đây và đấm chìm trong cái món quà này nhóa! </br></br> Chúc mừng sinh nhật nhóc'
+        document.querySelector('#docThu').style.display='flex'
+
+      }
+      if(x==0){
+        document.querySelector('#docThu').style.display='none'
+
+      }
+    }
+    function reading(x){
+      if(x==1){
+        document.querySelector('#thu').style.display='none'
+        document.querySelector('#contten').style.display='flex'
+      }
+    }
+    </script>
+</body>
+</html>
